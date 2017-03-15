@@ -1,0 +1,16 @@
+from setuptools import setup
+
+setup(
+    name='pybackup',
+    version='0.1',
+    description='Recursive file backup',
+    url='http://github.com/harsh8398/pybackup',
+    author='Harsh Patel',
+    author_email='pharsh58@gmail.com',
+    license='GNU',
+    scripts=['bin/pybackup'],
+    packages=['pybackup'],
+    install_requires=[
+        'nose',
+    ],
+    zip_safe=False)
