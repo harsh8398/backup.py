@@ -9,6 +9,7 @@ setup(
     author_email='pharsh58@gmail.com',
     scripts=['bin/pybackup'],
     packages=['pybackup'],
+    data_files = [("", ["LICENSE.txt"])],
     install_requires=[
         'nose',
     ],
