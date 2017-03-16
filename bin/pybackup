@@ -5,4 +5,6 @@ from sys import argv
 
 script, src, dst = argv
 obj=pybackup.GetList(src, dst)
-print(obj.flist())
+mylist=obj.flist()
+obj1=pybackup.BckpList(obj.src,obj.dst)
+print(obj1.docopy(mylist))
