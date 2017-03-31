@@ -1,5 +1,5 @@
 import shutil
-from os.path import abspath
+import os
 
 
 class BckpList(object):
@@ -11,6 +11,9 @@ class BckpList(object):
         """copies the list of files from source to destination"""
         data = ""
         for f in mylist:
-            shutil.copy(f, self.dst)
-            data += str("~ Copied -> " + str(f) + "\n")
+            absDst = f.replace(self.src, self.dst)
+            absDst = "/".join((absDst.split("/"))[:-1])
+            shutil.copy(f, absDst)
+            print(f.replace(self.src, self.dst))
+            data += str("~ Copied -> " + str(f))
         return (data)

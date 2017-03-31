@@ -1,5 +1,5 @@
-from os import listdir
-from os.path import isfile, join, abspath
+# from os import listdir
+import os
 
 
 class GetList(object):
@@ -11,10 +11,16 @@ class GetList(object):
         """returns list of files that are available in source but not
         in destination"""
         mylist = []
-        onlyfiles = [f for f in listdir(self.src) if isfile(join(self.src, f))]
-        for i in onlyfiles:
-            if i in listdir(self.dst):
-                pass
-            else:
-                mylist.append(join(self.src, i))
+        onlyfiles = []
+        onlyname = []
+        for path, subdirs, files in os.walk(self.dst):
+            for name in files:
+                onlyfiles.append(os.path.join(path, name))
+                onlyname.append(name)
+        for path, subdirs, files in os.walk(self.src):
+            for name in files:
+                if name in onlyname:
+                    pass
+                else:
+                    mylist.append(os.path.join(path, name))
         return (mylist)
