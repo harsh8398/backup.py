@@ -5,11 +5,11 @@ from sys import argv
 
 script, src, dst = argv
 obj=pybackup.GetList(src, dst)
-mylist=obj.flist()
+mylist=obj.fileList()
 obj1=pybackup.CreateDirs(obj.src,obj.dst)
 success=obj1.makeDirs(mylist)
 if success:
     obj2=pybackup.BckpList(obj1.src,obj1.dst)
-    print(obj2.docopy(mylist))
+    print(obj2.doCopy(mylist))
 else:
     print("Script returned with error")

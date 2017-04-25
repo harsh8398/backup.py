@@ -6,10 +6,10 @@ class GetList(object):
         self.src = src
         self.dst = dst
 
-    def flist(self):
+    def fileList(self):
         """returns list of files that are available in source but not
         in destination and files that are modified"""
-        mylist = []
+        flist = []
         sonlyfiles = []
         donlyfiles = []
         for path, subdirs, files in os.walk(self.dst):
@@ -26,7 +26,7 @@ class GetList(object):
                 if t2 > t1:
                     pass
                 else:
-                    mylist.append(sourcef)
+                    flist.append(sourcef)
             else:
-                mylist.append(sourcef)
-        return (mylist)
+                flist.append(sourcef)
+        return (flist)

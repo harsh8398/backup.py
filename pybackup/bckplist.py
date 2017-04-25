@@ -7,7 +7,7 @@ class BckpList(object):
         self.src = src
         self.dst = dst
 
-    def docopy(self, mylist):
+    def doCopy(self, mylist):
         """copies the list of files from source to destination"""
         data = ""
         for f in mylist:
