@@ -1,4 +1,3 @@
-# from os import listdir
 import os
 
 

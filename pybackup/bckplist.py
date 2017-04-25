@@ -15,5 +15,5 @@ class BckpList(object):
             absDst = "/".join((absDst.split("/"))[:-1])
             shutil.copy(f, absDst)
             print(f.replace(self.src, self.dst))
-            data += str("~ Copied -> " + str(f))
+            data += str("~ Copied -> " + str(f) + "\n")
         return (data)
