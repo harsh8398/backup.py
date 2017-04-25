@@ -73,7 +73,7 @@ See also the list of [contributors](https://github.com/harsh8398/pybackup/contri
 
 ## License
 
-This project is licensed under the GNU Public License - see the [LICENSE.md](LICENCE.txt) file for details
+This project is licensed under the GNU Public License - see the [LICENSE.txt](LICENSE.txt) file for details
 
 ## Acknowledgments
 
