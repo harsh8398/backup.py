@@ -61,10 +61,6 @@ Follow the installation process and you are good to go.
 * [Python](https://www/python.org) - The language used
 * [Nose](https://pypi.python.org/pypi/nose) - For writing tests
 
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
 ## Versioning
 
 For the versions available, see the [tags on this repository](https://github.com/harsh8398/pybackup/tags). 
@@ -73,7 +69,7 @@ For the versions available, see the [tags on this repository](https://github.com
 
 * **Harsh Patel** - *Initial work* - [harsh8398](https://github.com/harsh8398)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/harsh8398/pybackup/contributors) who participated in this project.
 
 ## License
 
