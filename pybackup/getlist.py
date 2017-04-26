@@ -23,7 +23,9 @@ class GetList(object):
             if destf in donlyfiles:
                 t1 = os.path.getmtime(sourcef)
                 t2 = os.path.getmtime(destf)
-                if t2 > t1:
+                s1 = os.path.getsize(sourcef)
+                s2 = os.path.getsize(destf)
+                if t2 > t1 or s1 != s2:
                     pass
                 else:
                     flist.append(sourcef)
