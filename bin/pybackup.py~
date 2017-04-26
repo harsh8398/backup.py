@@ -1,6 +1,0 @@
-#!/usr.bin/python3
-
-import pybackup
-from sys import argv
-
-script,src,dst=argv

@@ -1,8 +1,0 @@
-#!/usr.bin/python3
-
-import pybackup
-from sys import argv
-
-script, src, dst = argv
-pybackup.GetList(src, dst)
-print(pybackup.flist())
