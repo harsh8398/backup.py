@@ -12,7 +12,7 @@ class BckpList(object):
         data = ""
         for f in mylist:
             absDst = f.replace(self.src, self.dst, 1)
-            absDst = "/".join((absDst.split("/"))[:-1])
+            absDst = os.sep.join((absDst.split(os.sep))[:-1])
             shutil.copy(f, absDst)
             print(f.replace(self.src, self.dst))
             data += str("~ Copied -> " + str(f) + "\n")

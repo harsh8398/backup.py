@@ -25,7 +25,7 @@ class GetList(object):
                 t2 = os.path.getmtime(destf)
                 s1 = os.path.getsize(sourcef)
                 s2 = os.path.getsize(destf)
-                if t2 > t1 or s1 != s2:
+                if t2 > t1 and s1 == s2:
                     pass
                 else:
                     flist.append(sourcef)
