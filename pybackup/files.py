@@ -1,12 +1,12 @@
 import os
 
 
-class GetList(object):
+class Files(object):
     def __init__(self, src, dst):
         self.src = src
         self.dst = dst
 
-    def fileList(self):
+    def get_files(self):
         """returns list of files that are available in source but not
         in destination and files that are modified"""
         flist = []

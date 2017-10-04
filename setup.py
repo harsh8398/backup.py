@@ -1,4 +1,4 @@
-from setuptools import setup
+from distutils.core import setup
 
 setup(
     name='pybackup',
@@ -11,6 +11,5 @@ setup(
     packages=['pybackup'],
     data_files=[("", ["LICENSE.txt"])],
     install_requires=[
-        'nose',
     ],
     zip_safe=False)

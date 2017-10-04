@@ -1,15 +1,17 @@
-#!/usr.bin/python3
+#!/usr/bin/env python
 
 import pybackup
 from sys import argv
 
-script, src, dst = argv
-obj=pybackup.GetList(src, dst)
-mylist=obj.fileList()
-obj1=pybackup.CreateDirs(obj.src,obj.dst)
-success=obj1.makeDirs(mylist)
+# TODO: Add options/flags
+_, src, dst = argv
+
+Files = pybackup.Files(src, dst)
+flist = Files.get_files()
+Dirs = pybackup.Dirs(src, dst)
+success = Dirs.make_dirs(flist)
 if success:
-    obj2=pybackup.BckpList(obj1.src,obj1.dst)
-    print(obj2.doCopy(mylist))
+    Backup = pybackup.Backup(src, dst)
+    print(Backup.do_only_copy(flist))
 else:
     print("Script returned with error")

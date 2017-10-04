@@ -1,3 +1,4 @@
+# This version of tests won't work for current version of repo
 from nose.tools import *
 import os
 import pybackup
