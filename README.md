@@ -52,18 +52,9 @@ You can start using this script for you personal use...
 After installation you can run 'pybackup path/to/source/directory path/to/destination/directory' in Terminal to backup your file to destination directory or sync destination directory with source directory.
 ```
 
-## Deployment
-
-Follow the installation process and you are good to go.
-
-## Built With
-
-* [Python](https://www/python.org) - The language used
-* [Nose](https://pypi.python.org/pypi/nose) - For writing tests
-
 ## Versioning
 
-For the versions available, see the [tags on this repository](https://github.com/harsh8398/pybackup/tags). 
+For the versions available, see the [tags on this repository](https://github.com/harsh8398/pybackup/tags).
 
 ## Authors
 
@@ -73,7 +64,7 @@ See also the list of [contributors](https://github.com/harsh8398/pybackup/contri
 
 ## License
 
-This project is licensed under the GNU Public License - see the [LICENSE.txt](LICENSE.txt) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 
 ## Acknowledgments
 
