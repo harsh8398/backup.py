@@ -1,3 +1,4 @@
-from .files import *
-from .dirs import *
-from .backup import *
+__all__ = ["Backup", "IncrementalBackup"]
+
+from .backup import Backup
+from .incremental_backup import IncrementalBackup

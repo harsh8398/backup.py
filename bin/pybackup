@@ -2,7 +2,7 @@
 
 import pybackup
 import argparse
-
+# TODO: check for better windows support
 parser = argparse.ArgumentParser(description='Incremental Recursive Backup')
 parser.add_argument('src', metavar='source_dir', type=str,
                     help='source dir path to backup')
