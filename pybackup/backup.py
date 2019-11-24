@@ -20,10 +20,7 @@ class Path:
     def __set__(self, instance, value):
         if not isinstance(value, str):
             raise TypeError("Expected a str")
-        value = os.path.abspath(value)
-        if not os.path.exists(value):
-            raise ValueError("Expected a valid existing path string")
-        instance.__dict__[self.name] = value
+        instance.__dict__[self.name] = os.path.abspath(value)
 
     def __delete__(self, instance):
         del instance.__dict__[self.name]
@@ -34,7 +31,7 @@ class Backup(object):
     dst = Path('dst')
     def __init__(self, src, dst):
         self.src = src
-        self.dst = src
+        self.dst = dst
         if self.src == self.dst:
             raise ValueError("Source and destination paths can not be the same")
         # TODO: give support for skipping dot files & dirs

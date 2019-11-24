@@ -8,7 +8,7 @@ class IncrementalBackup(Backup):
     def __init__(self, src, dst):
         super().__init__(src, dst)
         # TODO: use this to incrementaly copy bytes of files
-        self.THRESHOLD_FILE_BYTES = 1024
+        self.BUFFER_SIZE = 1024
         self.THRESHOLD_DIFF_RATIO = 0.75
 
     def _files(self, dirpath):
