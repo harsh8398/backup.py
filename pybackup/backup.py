@@ -27,8 +27,9 @@ class Path:
 
 
 class Backup(object):
-    src = Path('src')
-    dst = Path('dst')
+    src = Path("src")
+    dst = Path("dst")
+
     def __init__(self, src, dst):
         self.src = src
         self.dst = dst
@@ -36,8 +37,14 @@ class Backup(object):
             raise ValueError("Source and destination paths can not be the same")
         # TODO: give support for skipping dot files & dirs
         # TODO: give follow symlink support
+        # TODO: give support for passing pathlike(https://docs.python.org/3/glossary.html#term-path-like-object) object as src and dst
         self.METADATA_DIR = os.path.join(self.src, ".pybackup")
         self._get_metadata()
+        self.YES_VALUES = ["y", "Yes", "1", "true"]
+
+    def _is_yes(self, flag):
+        flag = str(flag)
+        return True if flag.lower() in self.YES_VALUES else False
 
     def _get_metadata(self):
         try:
@@ -55,18 +62,20 @@ class Backup(object):
         with open(os.path.join(self.src, ".pybackup/metadata.json"), "w") as f:
             json.dump(self._metadata, f, indent=2)
 
-    def _scantree(self, path):
-        for entry in os.scandir(path):
-            if entry.is_dir(follow_symlinks=False):
-                yield from self._scantree(entry.path)
-            else:
-                yield entry
-
     def run(self):
         # TODO: give some warning when there already exists files in dst dir
         # this class on its own does full backup
         # https://stackoverflow.com/questions/22078621/python-how-to-copy-files-fast
+        if os.path.exists(self.dst):
+            print(
+                "Warning: Destination dir already exists. Going further will remove the destination dir and its content."
+            )
+            cont_flag = input("Do you want to continue?(y/N)")
+            if self._is_yes(cont_flag):
+                shutil.rmtree(self.dst)
+            else:
+                exit(0)
         shutil.copytree(self.src, self.dst)
         self._metadata["last_run_epoch"] = time.time()
-        # TODO: maybe check every file in dst to ensure we are saving correct epoch time?
+        # XXX: maybe check every file in dst to ensure we are saving correct epoch time? need to make it robust
         self._save_metadata()
