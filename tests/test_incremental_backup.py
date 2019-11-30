@@ -9,4 +9,4 @@ def test_copy(tmpdir):
     testsrc = tmpdir.mkdir("src")
     testsrc.join("hello.txt").write("content")
     IncrementalBackup(src=testsrc.strpath, dst=testdst.strpath).run()
-    assert tmpdir.join("dst/hello.txt").read() == "content"
+    assert testdst.join("hello.txt").read() == "content"

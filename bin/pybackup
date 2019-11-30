@@ -2,24 +2,33 @@
 
 import pybackup
 import argparse
+
 # TODO: check for better windows support
-parser = argparse.ArgumentParser(description='Incremental Recursive Backup')
-parser.add_argument('src', metavar='source_dir', type=str,
-                    help='source dir path to backup')
-parser.add_argument('dst', metavar='destination_dir', type=str,
-                    help='destination dir path to backup')
+parser = argparse.ArgumentParser(description="Incremental Recursive Backup")
+parser.add_argument(
+    "--type",
+    "-t",
+    type=str,
+    default="incremental",
+    choices=["full", "incremental"],
+    help="type of backup method",
+)
+parser.add_argument(
+    "src", metavar="source_dir", type=str, help="source dir path to backup"
+)
+parser.add_argument(
+    "dst", metavar="destination_dir", type=str, help="destination dir path to backup"
+)
 
 args = parser.parse_args()
 
 src = args.src
 dst = args.dst
+backup_type = args.type
 
-Files = pybackup.Files(src, dst)
-flist = Files.get_files()
-Dirs = pybackup.Dirs(src, dst)
-success = Dirs.make_dirs(flist)
-if success:
-    Backup = pybackup.Backup(src, dst)
-    print(Backup.do_only_copy(flist))
-else:
-    print("Script returned with error")
+if backup_type == "full":
+    backup_obj = pybackup.Backup(src, dst)
+    backup_obj.run()
+elif backup_type == "incremental":
+    backup_obj = pybackup.IncrementalBackup(src, dst)
+    backup_obj.run()

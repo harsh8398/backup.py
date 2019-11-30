@@ -1,14 +1,14 @@
 import hashlib
 import sys
 
-# XXX: have singleton metaclass for this class
+# Reference: https://rsync.samba.org/tech_report/tech_report.html
+# TODO: use pipelining for better performance as described in https://rsync.samba.org/tech_report/node5.html
 class Rsync(object):
     def __init__(self):
         super().__init__()
         self.BUFFER_SIZE = 4096
 
     def gen_weak_checksums(self, instream):
-        # https://rsync.samba.org/tech_report/node3.html
         # create weak checksum
         window = instream.read(self.BUFFER_SIZE)
         a = b = 0
@@ -60,6 +60,6 @@ class Rsync(object):
         for data in self.delta(remotestream, local_stream):
             if isinstance(data, int):
                 # TODO: write block
-                outstream.write()
+                pass
             else:
                 outstream.write(data)

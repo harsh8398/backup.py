@@ -1,5 +1,7 @@
 import os
 import shutil
+import pyrsync2 as pyrsync
+from tqdm import tqdm
 from .backup import Backup
 
 
@@ -22,38 +24,37 @@ class IncrementalBackup(Backup):
         return str.replace(path, self.src, self.dst, 1)
 
     def _get_diff_files(self):
-        src_entries = self._scantree(self.src)
+        src_entries = IncrementalBackup.scantree(self.src)
         for entry in src_entries:
             if not os.path.exists(self._get_dst_path_from_src(entry.path)):
                 yield entry.path, self.WHOLE_COPY_CONST
-            elif entry.stat.st_mtime >= self._metadata["last_run_epoch"]:
+            elif entry.stat().st_mtime >= self._metadata["last_run_epoch"]:
                 yield entry.path, self.PARTIAL_COPY_CONST
 
     @staticmethod
-    def patch_file(self, src_file, dst_file):
-        # unpatched = open(dst_file, "rb")
-        # hashes = pyrsync.blockchecksums(unpatched)
-        # patchedfile = open(src_file, "rb")
-        # delta = pyrsync.rsyncdelta(patchedfile, hashes)
-        # unpatched.seek(0)
-        # save_to = open(dst_file, "wb")
-        # pyrsync.patchstream(unpatched, save_to, delta)
-        pass
+    def patch_file(src_file, dst_file):
+        unpatched = open(dst_file, "rb")
+        hashes = pyrsync.blockchecksums(unpatched)
+        patchedfile = open(src_file, "rb")
+        delta = pyrsync.rsyncdelta(patchedfile, hashes)
+        unpatched.seek(0)
+        save_to = open(dst_file, "wb")
+        pyrsync.patchstream(unpatched, save_to, delta)
 
     @staticmethod
     def copy_file(src_file, dst_file):
+        # XXX: should we preserve metadata?
         shutil.copy2(src_file, dst_file)
 
     def _copytree(self):
         diff_files = self._get_diff_files()
-        for filepath, action in diff_files:
+        for filepath, action in tqdm(diff_files):
             src_filepath = filepath
             dst_filepath = self._get_dst_path_from_src(filepath)
             if action == self.WHOLE_COPY_CONST:
-                # XXX: should we preserve metadata?
                 self.copy_file(src_filepath, dst_filepath)
             elif action == self.PARTIAL_COPY_CONST:
-                self.patch_file(src_filepath, dst_filepath)
+                IncrementalBackup.patch_file(src_filepath, dst_filepath)
 
     def run(self):
         if not os.path.exists(self.dst):
