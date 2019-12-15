@@ -11,7 +11,6 @@ setup(
     packages=['pybackup'],
     data_files=[("", ["LICENSE.txt"])],
     install_requires=[
-        "pyrsync2",
         "tqdm"
     ],
     zip_safe=False)

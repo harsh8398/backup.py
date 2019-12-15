@@ -1,3 +1,2 @@
-pyrsync2
 tqdm
 pytest>=3.5.0

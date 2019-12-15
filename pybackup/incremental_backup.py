@@ -1,6 +1,6 @@
 import os
 import shutil
-import pyrsync2 as pyrsync
+from .rsync_copy import Rsync
 from tqdm import tqdm
 from .backup import Backup
 
@@ -33,13 +33,11 @@ class IncrementalBackup(Backup):
 
     @staticmethod
     def patch_file(src_file, dst_file):
-        unpatched = open(dst_file, "rb")
-        hashes = pyrsync.blockchecksums(unpatched)
-        patchedfile = open(src_file, "rb")
-        delta = pyrsync.rsyncdelta(patchedfile, hashes)
-        unpatched.seek(0)
-        save_to = open(dst_file, "wb")
-        pyrsync.patchstream(unpatched, save_to, delta)
+        patchedstream = open(src_file, "rb")
+        instream = open(dst_file, "rb")
+        outstream = open(dst_file, "wb")
+        Rsync(patchedstream, instream, outstream).rsync_copy()
+        
 
     @staticmethod
     def copy_file(src_file, dst_file):
