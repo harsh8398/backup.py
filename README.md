@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.org/harsh8398/pybackup.svg?branch=master)](https://travis-ci.org/harsh8398/pybackup)
+[![Build Status](https://travis-ci.org/harsh8398/pybackup.svg?branch=develop)](https://travis-ci.org/harsh8398/pybackup)
+[![codecov](https://codecov.io/gh/harsh8398/pybackup/branch/master/graph/badge.svg)](https://codecov.io/gh/harsh8398/pybackup)
 # PYBACKUP
 
 Recursive/Incremental Backup Using Python
