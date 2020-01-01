@@ -2,72 +2,44 @@
 [![codecov](https://codecov.io/gh/harsh8398/pybackup/branch/develop/graph/badge.svg)](https://codecov.io/gh/harsh8398/pybackup/branch/develop)
 # PYBACKUP
 
-Recursive/Incremental Backup Using Python
-
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+PyBackup is a recursive/incremental backup utility package written purely in Python. This main feature of the package is its incremental backup which incrementally copies only the files that are added or the parts of the file which are changed. To achieve the later scenario it uses rsync algorithm for which you can find the details [here](https://rsync.samba.org/tech_report/tech_report.html).
 
 ### Prerequisites
 
-You need to install Python 3.5 or above on your machine and pip for python for installing the project on your machine.
+- Python 3.5 or above
 
-```
-For installing Python go to https://www.python.org and for installing pip, Download get-pip.py from https://https://bootstrap.pypa.io/get-pip.py to a folder on your computer. Open a command prompt window and navigate to the folder containing get-pip.py. Then run python get-pip.py in your Command Prompt/Terminal(Windows/Linux). This will install pip.
-```
+### Quick Install
 
-### Installation
-
-Downloading the project from git
-
-```
-You can download this project by clicking the button clone or download at the top of the repository.
+```sh
+pip install git+https://github.com/harsh8398/pybackup.git
 ```
 
-Step 1:
+### Simple Example
 
-```
-Download and Extract the project files.
-```
+This package also installs a script which you can run in the shell as follows:
 
-Step 2:
-
-```
-Open up your Terminal and change your current working directory to project directory that is path/to/pybackup.Make sure you are in the direcotry pybackup that has file setup.py in it.
+```sh
+pybackup ~/path/to/the/source/dir ~/path/to/the/destination/dir
 ```
 
-Final Step:
+Or you can use its Python interface as follows:
 
-```
-Run the command 'pip install .' without the quotation.
-```
+```python
+from pybackup import IncrementalBackup
 
-## Running the tests
-
-You can run included test script by typing command 'nosetests' in project directory.But you need to install nose package first.
-
-### Start using script for your daily backup
-
-You can start using this script for you personal use...
-
-```
-After installation you can run 'pybackup path/to/source/directory path/to/destination/directory' in Terminal to backup your file to destination directory or sync destination directory with source directory.
+source_dir = "~/path/to/the/source/dir"
+destination_dir = "~/path/to/the/destination/dir"
+IncrementalBackup(src=source_dir, dst=destination_dir).run()
 ```
 
 ## Versioning
 
 For the versions available, see the [tags on this repository](https://github.com/harsh8398/pybackup/tags).
 
-## Authors
-
-* **Harsh Patel** - *Initial work* - [harsh8398](https://github.com/harsh8398)
-
-See also the list of [contributors](https://github.com/harsh8398/pybackup/contributors) who participated in this project.
-
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
 
-* inspired by rsync
+This project was solely inspired by [rsync](https://linux.die.net/man/1/rsync).
