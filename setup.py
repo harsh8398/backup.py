@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name='backup.py',
-    version='0.1.0',
+    version='0.1.1',
     author='Harsh Patel',
     author_email='pharsh58@gmail.com',
     description='Recursive and Incremental backup utility',
