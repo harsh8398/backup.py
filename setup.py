@@ -14,7 +14,7 @@ setuptools.setup(
     url='http://github.com/harsh8398/backup.py',
     packages=['backup'],
     scripts=['bin/pybackup'],
-    data_files=[("", ["LICENSE.txt"])],
+    package_data={"": ["LICENSE.txt"]},
     install_requires=[
         "tqdm"
     ],
@@ -28,4 +28,5 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.5',
+    zip_safe=False
 )
