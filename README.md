@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/harsh8398/backup.py.svg?branch=master)](https://travis-ci.org/harsh8398/backup.py)
 [![codecov](https://codecov.io/gh/harsh8398/backup.py/branch/master/graph/badge.svg)](https://codecov.io/gh/harsh8398/backup.py/branch/master)
-# PYBACKUP
+# BACKUP.PY
 
 PyBackup is a recursive/incremental backup utility package written purely in Python. This main feature of the package is its incremental backup which incrementally copies only the files that are added or the parts of the file which are changed. To achieve the later scenario it uses rsync algorithm for which you can find the details [here](https://rsync.samba.org/tech_report/tech_report.html).
 
