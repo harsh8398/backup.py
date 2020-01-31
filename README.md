@@ -11,7 +11,7 @@ PyBackup is a recursive/incremental backup utility package written purely in Pyt
 ### Quick Install
 
 ```sh
-pip install git+https://github.com/harsh8398/backup.py.git
+pip install backup.py
 ```
 
 ### Simple Example
