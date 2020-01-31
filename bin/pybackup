@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import pybackup
+import backup
 import argparse
 
 # TODO: check for better windows support
@@ -27,8 +27,8 @@ dst = args.dst
 backup_type = args.type
 
 if backup_type == "full":
-    backup_obj = pybackup.Backup(src, dst)
+    backup_obj = backup.Backup(src, dst)
     backup_obj.run()
 elif backup_type == "incremental":
-    backup_obj = pybackup.IncrementalBackup(src, dst)
+    backup_obj = backup.IncrementalBackup(src, dst)
     backup_obj.run()

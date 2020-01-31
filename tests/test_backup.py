@@ -1,6 +1,6 @@
 import pytest
 import json
-from pybackup import Backup
+from backup import Backup
 
 def test_copy(tmpdir):
     testsrc = tmpdir.mkdir("src")

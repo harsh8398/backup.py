@@ -1,6 +1,6 @@
 import pytest
 import json
-from pybackup import IncrementalBackup
+from backup import IncrementalBackup
 
 
 def test_partial_copy(tmpdir):
